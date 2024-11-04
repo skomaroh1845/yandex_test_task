@@ -1,0 +1,198 @@
+[2024-11-04T16:22:33.365+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-04T16:22:33.397+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: yandex_task_dag.sending_to_clickhouse manual__2024-11-04T16:20:37.059441+00:00 [queued]>
+[2024-11-04T16:22:33.415+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: yandex_task_dag.sending_to_clickhouse manual__2024-11-04T16:20:37.059441+00:00 [queued]>
+[2024-11-04T16:22:33.416+0000] {taskinstance.py:2865} INFO - Starting attempt 2 of 2
+[2024-11-04T16:22:33.443+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): sending_to_clickhouse> on 2024-11-04 16:20:37.059441+00:00
+[2024-11-04T16:22:33.452+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=352) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-04T16:22:33.455+0000] {standard_task_runner.py:72} INFO - Started process 354 to run task
+[2024-11-04T16:22:33.456+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'yandex_task_dag', 'sending_to_clickhouse', 'manual__2024-11-04T16:20:37.059441+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpcuf7d0ka']
+[2024-11-04T16:22:33.463+0000] {standard_task_runner.py:105} INFO - Job 43: Subtask sending_to_clickhouse
+[2024-11-04T16:22:33.634+0000] {task_command.py:467} INFO - Running <TaskInstance: yandex_task_dag.sending_to_clickhouse manual__2024-11-04T16:20:37.059441+00:00 [running]> on host d759fd8a501c
+[2024-11-04T16:22:33.898+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='yandex_task_dag' AIRFLOW_CTX_TASK_ID='sending_to_clickhouse' AIRFLOW_CTX_EXECUTION_DATE='2024-11-04T16:20:37.059441+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-04T16:20:37.059441+00:00'
+[2024-11-04T16:22:33.900+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-04T16:22:33.901+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-04T16:22:33.902+0000] {logging_mixin.py:190} INFO - Current task name:sending_to_clickhouse state:running start_date:2024-11-04 16:22:33.398551+00:00
+[2024-11-04T16:22:33.905+0000] {logging_mixin.py:190} INFO - Dag name:yandex_task_dag and current dag run status:running
+[2024-11-04T16:22:33.907+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-04T16:22:33.911+0000] {httpclient.py:446} WARNING - Unexpected Http Driver Exception
+[2024-11-04T16:22:33.912+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/util/url.py", line 425, in parse_url
+    host, port = _HOST_PORT_RE.match(host_port).groups()  # type: ignore[union-attr]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'groups'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 436, in _raw_request
+    response = self.http.request(method, url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/_request_methods.py", line 144, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/_request_methods.py", line 279, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/poolmanager.py", line 420, in urlopen
+    u = parse_url(url)
+        ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/util/url.py", line 451, in parse_url
+    raise LocationParseError(source_url) from e
+urllib3.exceptions.LocationParseError: Failed to parse: http://host.docker.internal:8123:8123?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/dag.py", line 13, in send_data_to_ch
+    client = clickhouse_connect.get_client(host='host.docker.internal:8123', username='default', password='')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/__init__.py", line 115, in create_client
+    return HttpClient(interface, host, port, username, password, database, settings=settings, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 156, in __init__
+    super().__init__(database=database,
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/client.py", line 68, in __init__
+    self._init_common_settings(apply_server_timezone)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/client.py", line 73, in _init_common_settings
+    tuple(self.command('SELECT version(), timezone()', use_database=False))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 350, in command
+    response = self._raw_request(payload, params, headers, method, fields=fields, server_wait=False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 448, in _raw_request
+    raise OperationalError(f'Error {ex} executing HTTP request attempt {attempts}{err_url}') from ex
+clickhouse_connect.driver.exceptions.OperationalError: Error Failed to parse: http://host.docker.internal:8123:8123? executing HTTP request attempt 1 (http://host.docker.internal:8123:8123)
+[2024-11-04T16:22:33.939+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-11-04T16:22:33.941+0000] {logging_mixin.py:190} INFO - Task start:2024-11-04 16:22:33.398551+00:00 end:2024-11-04 16:22:33.937983+00:00 duration:0.539432
+[2024-11-04T16:22:33.944+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): sending_to_clickhouse> dag:<DAG: yandex_task_dag> dagrun:<DagRun yandex_task_dag @ 2024-11-04 16:20:37.059441+00:00: manual__2024-11-04T16:20:37.059441+00:00, state:running, queued_at: 2024-11-04 16:22:30.767590+00:00. externally triggered: True>
+[2024-11-04T16:22:33.945+0000] {logging_mixin.py:190} INFO - Failure caused by Error Failed to parse: http://host.docker.internal:8123:8123? executing HTTP request attempt 1 (http://host.docker.internal:8123:8123)
+[2024-11-04T16:22:33.946+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=yandex_task_dag, task_id=sending_to_clickhouse, run_id=manual__2024-11-04T16:20:37.059441+00:00, execution_date=20241104T162037, start_date=20241104T162233, end_date=20241104T162233
+[2024-11-04T16:22:33.993+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-04T16:22:33.996+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 43 for task sending_to_clickhouse (Error Failed to parse: http://host.docker.internal:8123:8123? executing HTTP request attempt 1 (http://host.docker.internal:8123:8123); 354)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/util/url.py", line 425, in parse_url
+    host, port = _HOST_PORT_RE.match(host_port).groups()  # type: ignore[union-attr]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'groups'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 436, in _raw_request
+    response = self.http.request(method, url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/_request_methods.py", line 144, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/_request_methods.py", line 279, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/poolmanager.py", line 420, in urlopen
+    u = parse_url(url)
+        ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/urllib3/util/url.py", line 451, in parse_url
+    raise LocationParseError(source_url) from e
+urllib3.exceptions.LocationParseError: Failed to parse: http://host.docker.internal:8123:8123?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/dag.py", line 13, in send_data_to_ch
+    client = clickhouse_connect.get_client(host='host.docker.internal:8123', username='default', password='')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/__init__.py", line 115, in create_client
+    return HttpClient(interface, host, port, username, password, database, settings=settings, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 156, in __init__
+    super().__init__(database=database,
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/client.py", line 68, in __init__
+    self._init_common_settings(apply_server_timezone)
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/client.py", line 73, in _init_common_settings
+    tuple(self.command('SELECT version(), timezone()', use_database=False))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 350, in command
+    response = self._raw_request(payload, params, headers, method, fields=fields, server_wait=False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/clickhouse_connect/driver/httpclient.py", line 448, in _raw_request
+    raise OperationalError(f'Error {ex} executing HTTP request attempt {attempts}{err_url}') from ex
+clickhouse_connect.driver.exceptions.OperationalError: Error Failed to parse: http://host.docker.internal:8123:8123? executing HTTP request attempt 1 (http://host.docker.internal:8123:8123)
+[2024-11-04T16:22:34.065+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-04T16:22:34.141+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-04T16:22:34.152+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,60 @@
+[2024-11-04T14:33:47.922+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-04T14:33:47.957+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: yandex_task_dag.table_creation manual__2024-11-04T14:33:41.246660+00:00 [queued]>
+[2024-11-04T14:33:47.969+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: yandex_task_dag.table_creation manual__2024-11-04T14:33:41.246660+00:00 [queued]>
+[2024-11-04T14:33:47.969+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2024-11-04T14:33:48.002+0000] {taskinstance.py:2888} INFO - Executing <Task(PostgresOperator): table_creation> on 2024-11-04 14:33:41.246660+00:00
+[2024-11-04T14:33:48.016+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1574) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-04T14:33:48.019+0000] {standard_task_runner.py:72} INFO - Started process 1583 to run task
+[2024-11-04T14:33:48.021+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'yandex_task_dag', 'table_creation', 'manual__2024-11-04T14:33:41.246660+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpfc0q__rb']
+[2024-11-04T14:33:48.024+0000] {standard_task_runner.py:105} INFO - Job 30: Subtask table_creation
+[2024-11-04T14:33:48.124+0000] {task_command.py:467} INFO - Running <TaskInstance: yandex_task_dag.table_creation manual__2024-11-04T14:33:41.246660+00:00 [running]> on host 94d9180b5540
+[2024-11-04T14:33:48.295+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='yandex_task_dag' AIRFLOW_CTX_TASK_ID='table_creation' AIRFLOW_CTX_EXECUTION_DATE='2024-11-04T14:33:41.246660+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-04T14:33:41.246660+00:00'
+[2024-11-04T14:33:48.298+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-04T14:33:48.299+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-04T14:33:48.299+0000] {logging_mixin.py:190} INFO - Current task name:table_creation state:running start_date:2024-11-04 14:33:47.958157+00:00
+[2024-11-04T14:33:48.300+0000] {logging_mixin.py:190} INFO - Dag name:yandex_task_dag and current dag run status:running
+[2024-11-04T14:33:48.301+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-04T14:33:48.301+0000] {sql.py:266} INFO - Executing: CREATE TABLE IF NOT EXISTS transactions (
+    user_id INT,
+    price INT
+);
+
+CREATE TABLE IF NOT EXISTS users (
+   user_id INT PRIMARY KEY,
+   email VARCHAR,
+   date_registration TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS webinar (
+    email VARCHAR
+);
+[2024-11-04T14:33:48.315+0000] {base.py:84} INFO - Retrieving connection 'postgres'
+[2024-11-04T14:33:48.338+0000] {base.py:84} INFO - Retrieving connection 'postgres'
+[2024-11-04T14:33:48.373+0000] {sql.py:509} INFO - Running statement: CREATE TABLE IF NOT EXISTS transactions (
+    user_id INT,
+    price INT
+);
+
+CREATE TABLE IF NOT EXISTS users (
+   user_id INT PRIMARY KEY,
+   email VARCHAR,
+   date_registration TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS webinar (
+    email VARCHAR
+);, parameters: None
+[2024-11-04T14:33:48.400+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-04T14:33:48.401+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=yandex_task_dag, task_id=table_creation, run_id=manual__2024-11-04T14:33:41.246660+00:00, execution_date=20241104T143341, start_date=20241104T143347, end_date=20241104T143348
+[2024-11-04T14:33:48.421+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-04T14:33:48.422+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-04T14:33:48.422+0000] {logging_mixin.py:190} INFO - Dag name:yandex_task_dag queued_at:2024-11-04 14:33:41.369038+00:00
+[2024-11-04T14:33:48.423+0000] {logging_mixin.py:190} INFO - Task hostname:94d9180b5540 operator:PostgresOperator
+[2024-11-04T14:33:48.479+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-04T14:33:48.497+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1378: AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+  result = cls.__new__(cls)
+
+[2024-11-04T14:33:48.522+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-04T14:33:48.524+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
